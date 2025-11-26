@@ -1,0 +1,311 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "42689cdf5840f6ea01ca5121eee29d4e",
+    "entities": [
+      {
+        "tableName": "categories",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `name` TEXT NOT NULL, `icon` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "icon",
+            "columnName": "icon",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "category_to_mushroom",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `mushroom_id` INTEGER NOT NULL, `category_id` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`mushroom_id`) REFERENCES `mushrooms`(`id`) ON UPDATE RESTRICT ON DELETE RESTRICT , FOREIGN KEY(`category_id`) REFERENCES `categories`(`id`) ON UPDATE RESTRICT ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "mushroomId",
+            "columnName": "mushroom_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoryId",
+            "columnName": "category_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "mushrooms",
+            "onDelete": "RESTRICT",
+            "onUpdate": "RESTRICT",
+            "columns": [
+              "mushroom_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "categories",
+            "onDelete": "RESTRICT",
+            "onUpdate": "RESTRICT",
+            "columns": [
+              "category_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "descriptions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `mushroom_id` INTEGER NOT NULL, `content` TEXT NOT NULL, `type` INTEGER NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`mushroom_id`) REFERENCES `mushrooms`(`id`) ON UPDATE RESTRICT ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "mushroomId",
+            "columnName": "mushroom_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "content",
+            "columnName": "content",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "mushrooms",
+            "onDelete": "RESTRICT",
+            "onUpdate": "RESTRICT",
+            "columns": [
+              "mushroom_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "mushrooms",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `popularity` INTEGER NOT NULL, `title` TEXT NOT NULL, `lat_title` TEXT NOT NULL, `preview` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "popularity",
+            "columnName": "popularity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latTitle",
+            "columnName": "lat_title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "preview",
+            "columnName": "preview",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "others",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `mushroom_id` INTEGER NOT NULL, `title` TEXT NOT NULL, `value` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`mushroom_id`) REFERENCES `mushrooms`(`id`) ON UPDATE RESTRICT ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "mushroomId",
+            "columnName": "mushroom_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "mushrooms",
+            "onDelete": "RESTRICT",
+            "onUpdate": "RESTRICT",
+            "columns": [
+              "mushroom_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "synonyms",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `mushroom_id` INTEGER NOT NULL, `name` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`mushroom_id`) REFERENCES `mushrooms`(`id`) ON UPDATE RESTRICT ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "mushroomId",
+            "columnName": "mushroom_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "mushrooms",
+            "onDelete": "RESTRICT",
+            "onUpdate": "RESTRICT",
+            "columns": [
+              "mushroom_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "favorites",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`mushroom_id` INTEGER NOT NULL, `status` INTEGER NOT NULL, PRIMARY KEY(`mushroom_id`), FOREIGN KEY(`mushroom_id`) REFERENCES `mushrooms`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "mushroomId",
+            "columnName": "mushroom_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "mushroom_id"
+          ]
+        },
+        "foreignKeys": [
+          {
+            "table": "mushrooms",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "mushroom_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '42689cdf5840f6ea01ca5121eee29d4e')"
+    ]
+  }
+}
