@@ -22,7 +22,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
@@ -33,6 +35,8 @@ import cafe.adriel.voyager.navigator.tab.TabNavigator
 import ru.topbun.mushrooms.presentation.screens.category.CategoryScreen
 import ru.topbun.mushrooms.presentation.screens.favorite.FavoriteScreen
 import ru.topbun.mushrooms.presentation.screens.main.MainScreen
+import ru.topbun.mushrooms.presentation.screens.profile.ProfileScreen
+import ru.topbun.mushrooms.presentation.screens.quiz.QuizScreen
 import ru.topbun.mushrooms.presentation.theme.Colors
 
 object TabsScreen : Screen {
@@ -56,13 +60,15 @@ object TabsScreen : Screen {
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(Colors.BG_GREEN)
-                            .padding(16.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
+                            .padding(12.dp),
+                        horizontalArrangement = Arrangement.spacedBy(0.dp),
                         verticalAlignment = Alignment.Companion.CenterVertically
                     ) {
                         BottomNavigationItem(MainScreen)
                         BottomNavigationItem(CategoryScreen)
                         BottomNavigationItem(FavoriteScreen)
+                        BottomNavigationItem(QuizScreen)
+                        BottomNavigationItem(ProfileScreen)
                     }
                 }
             )
@@ -99,8 +105,11 @@ fun RowScope.BottomNavigationItem(
         Text(
             text = tab.options.title,
             fontWeight = FontWeight.SemiBold,
-            fontSize = 14.sp,
+            fontSize = 11.sp,
             color = color,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            textAlign = TextAlign.Center,
         )
 
     }

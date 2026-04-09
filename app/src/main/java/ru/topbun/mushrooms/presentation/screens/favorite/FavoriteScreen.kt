@@ -35,7 +35,7 @@ object FavoriteScreen: Tab {
 
     override val options
         @Composable get() = TabOptions(
-            index = 0U,
+            index = 2U,
             title = "Избранное",
             icon = painterResource(R.drawable.ic_tabs_favorite)
         )

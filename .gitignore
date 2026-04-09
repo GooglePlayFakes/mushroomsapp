@@ -5,6 +5,7 @@
 /.kotlin
 .DS_Store
 /build
+.gradle-home
 /captures
 .externalNativeBuild
 .cxx

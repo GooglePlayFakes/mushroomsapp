@@ -12,7 +12,7 @@ object CategoryScreen: Tab {
 
     override val options
         @Composable get() = TabOptions(
-            index = 0U,
+            index = 1U,
             title = "Категории",
             icon = painterResource(R.drawable.ic_tabs_category)
         )
